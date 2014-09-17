@@ -61,6 +61,9 @@ SocketIO.prototype.emit = function emit(eventName, data, callback) {
   });
 }
 
+/**
+ * Register the plugin with architect.
+ */
 module.exports = function (options, imports, register) {
   // Runned here to esure that only exists one socket server.
   var socketIO = new SocketIO(imports.server, options.secret || undefined);

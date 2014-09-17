@@ -15,7 +15,10 @@ var log;
 /**
  * Define the Base object (constructor).
  */
-var Logger = function Logger(filename) {
+var Logger = function Logger(filename, debug) {
+  // If true debug messages are logged.
+  this.log_debug = debug
+
   // Set logger.
   log = new Log('debug', fs.createWriteStream(filename, {'flags': 'a'}));
 }
@@ -51,13 +54,16 @@ Logger.prototype.info = function info(message) {
  *   The message to send to the logger.
  */
 Logger.prototype.debug = function debug(message) {
-  if (log !== undefined) {
+  if (log !== undefined && this.log_debug == true) {
     log.debug(message);
   }
 }
 
+/**
+ * Register the plugin with architect.
+ */
 module.exports = function (options, imports, register) {
-  var logger = new Logger(options.filename);
+  var logger = new Logger(options.filename, options.debug || false);
 
   register(null, {
     "logger": logger

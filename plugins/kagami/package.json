@@ -5,10 +5,10 @@
   "main": "kagami.js",
   "private": true,
   "plugin": {
-    "provides": [ "bus" ]
-  },
-  "consumes": [
-    "socket",
-    "logger"
-  ]
+    "provides": [ "kagami" ],
+    "consumes": [
+      "socket",
+      "logger"
+    ]
+  }
 }

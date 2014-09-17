@@ -7,7 +7,8 @@ var architect = require("architect");
 var config = [
   {
     "packagePath": "./plugins/logger",
-    "filename": "debug.log"
+    "filename": "debug.log",
+    "debug": true
   },
   {
     "packagePath": "./plugins/cache",
@@ -27,7 +28,10 @@ var config = [
     "packagePath": "./plugins/socket"
   },
   {
-    "packagePath": "./plugins/kagami"
+    "packagePath": "./plugins/kagami",
+    "region": {
+      'regions-1': 1
+    }
   }
 ];
 
