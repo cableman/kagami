@@ -1,0 +1,13 @@
+{
+  "name": "Configuration",
+  "description": "Plugin to load json configuration file",
+  "version": "0.0.1",
+  "main": "configuration.js",
+  "private": true,
+  "dependencies": {
+    "nconf" : "0.6.9"
+  },
+  "plugin": {
+    "provides": [ "configuration" ]
+  }
+}
