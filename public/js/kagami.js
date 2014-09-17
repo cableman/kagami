@@ -10,7 +10,6 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
   var socket;
   var self = this;
 
-
   /**
    * Get GET-paramter @name from the url.
    *
@@ -104,9 +103,9 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
   $scope.message = 'Connecting to server...';
 
   // Get socket connection.
-  socket.connect().then(function(result) {
+  socket.connect().then(function(message) {
     // Display message from promise.
-    $scope.message = result;
+    $scope.message = message;
     socket.on('ready', function(data) {
       // Display message from server.
       $scope.message = data.message;
@@ -117,65 +116,37 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
   });
 });
 
-kagamiApp.controller('region1Controller', function($scope, socket) {
-  socket.connect().then(function(result) {
-    socket.emit('ready', { region: 1 });
+/**
+ * @file
+ * Contains screen directives.
+ */
 
-    socket.on('dataRegion1', function(data) {
-      $scope.data = data;
-    });
-  });
-});
+/**
+ * Directive to insert a screen.
+ */
+kagamiApp.directive('region', ['socket', function(socket) {
+  return {
+    restrict: 'E',
+    scope: {
+      id: '@',
+    },
+    link: function(scope, element, attrs) {
+      socket.connect().then(function(result) {
+        socket.emit('ready', { region: $scope.id });
 
-kagamiApp.controller('region2Controller', function($scope, socket) {
-  socket.connect().then(function(result) {
-    socket.emit('ready', { region: 2 });
+        socket.on('region-view-' + $scope.id, function(data) {
+          element.append('<h2>TEST</h2>');
+        });
 
-    socket.on('dataRegion2', function(data) {
-      $scope.data = data;
-    });
-  });
-});
+        socket.on('region-data-' + $scope.id, function(data) {
+          element.append('<h2>DATA</h2>');
+        });
+      });
+    }
+  }
+}]);
 
-kagamiApp.controller('region3Controller', function($scope, socket) {
-  socket.connect().then(function(result) {
-    socket.emit('ready', { region: 3 });
 
-    socket.on('dataRegion3', function(data) {
-      $scope.data = data;
-    });
-  });
-});
-
-kagamiApp.controller('region4Controller', function($scope, socket) {
-  socket.connect().then(function(result) {
-    socket.emit('ready', { region: 4 });
-
-    socket.on('dataRegion4', function(data) {
-      $scope.data = data;
-    });
-  });
-});
-
-kagamiApp.controller('region5Controller', function($scope, socket) {
-  socket.connect().then(function(result) {
-    socket.emit('ready', { region: 5 });
-
-    socket.on('dataRegion5', function(data) {
-      $scope.data = data;
-    });
-  });
-});
-
-kagamiApp.controller('region6Controller', function($scope, socket) {
-  socket.connect().then(function(result) {
-    socket.emit('ready', { region: 6 });
-
-    socket.on('dataRegion6', function(data) {
-      $scope.data = data;
-    });
-  });
-});
 
 /**
  * Create filter that pads a number with zero's.

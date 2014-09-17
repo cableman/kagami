@@ -25,6 +25,9 @@ var config = [
   },
   {
     "packagePath": "./plugins/socket"
+  },
+  {
+    "packagePath": "./plugins/kagami"
   }
 ];
 

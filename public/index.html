@@ -8,32 +8,28 @@
     <link rel="stylesheet" type="text/css" href="css/weather-icons.css">
     <link rel='stylesheet' type="text/css" href='css/styles.css' />
   </head>
-  <body>
-    <div class="content" data-ng-app="kagamiApp">
+  <body data-ng-app="kagamiApp">
+    <div class="content">
+
+      <!-- TOP -->
       <div class="top">
-        <div class="left" data-ng-controller="region1Controller">
-          <div data-ng-include src="'views/region/1'"></div>
-        </div>
-        <div class="right" data-ng-controller="region2Controller">
-          <div data-ng-include src="'views/region/2'"></div>
-        </div>
+        <region class="left" id="1"></region>
+        <region class="right" id="2"></region>
       </div>
+
+      <!-- CENTER -->
       <div class="center">
-        <div class="left" data-ng-controller="region3Controller">
-          <div data-ng-include src="'views/region/3'"></div>
-        </div>
-        <div class="right" data-ng-controller="region4Controller">
-          <div data-ng-include src="'views/region/4'"></div>
-        </div>
+        <region class="left" id="3"></region>
+        <region class="right" id="4"></region>
       </div>
+
+      <!-- BUTTOM -->
       <div class="bottom">
-        <div class="left" data-ng-controller="region5Controller">
-          <div data-ng-include src="'views/region/5'"></div>
-        </div>
-        <div class="right" data-ng-controller="region6Controller">
-          <div data-ng-include src="'views/region/6'"></div>
-        </div>
+        <region class="left" id="5"></region>
+        <region class="right" id="6"></region>
       </div>
+
+      <!-- Kagami logo -->
       <div data-ng-controller="kagamiController">
         <div data-ng-include src="'views/kagami.html'"></div>
       </div>
