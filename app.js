@@ -10,6 +10,15 @@ var config = [
     "filename": "debug.log"
   },
   {
+    "packagePath": "./plugins/cache",
+    "config": {
+      "port": "6379",
+      "host": "localhost",
+      "auth": null,
+      "db": 0
+    }
+  },
+  {
     "packagePath": "./plugins/server",
     "port": "3000",
     "path": path.join(__dirname, 'public')
