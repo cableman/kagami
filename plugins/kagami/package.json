@@ -1,0 +1,14 @@
+{
+  "name": "Kagami",
+  "description": "Kagami provides communication between the front-end and plugins",
+  "version": "0.0.1",
+  "main": "kagami.js",
+  "private": true,
+  "plugin": {
+    "provides": [ "bus" ]
+  },
+  "consumes": [
+    "socket",
+    "logger"
+  ]
+}
