@@ -1,0 +1,14 @@
+%debug-border {
+  border: 1px red dashed;
+}
+
+.content {
+  .top, .center, .bottom {
+    .left {
+      @extend %debug-border;
+    }
+    .right {
+      @extend %debug-border;
+    }
+  }
+}

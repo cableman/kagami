@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Handle style for the different views.
+ */
+
+.kagami {
+  position: absolute;
+  bottom: 0px;
+
+  width: 200px;
+  text-align: center;
+
+  img {
+    width: 50px;
+  }
+
+  .message {
+    font-size: 70%;
+  }
+}

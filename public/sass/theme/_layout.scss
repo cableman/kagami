@@ -1,0 +1,41 @@
+/**
+ * Layouts
+ */
+
+.content {
+  width: 100%;
+
+  .top, .center, .bottom {
+    @include zen-grid-container;
+    min-height: (100% / 3);
+
+    .left {
+      @include zen-grid-item(1, 1);
+    }
+    .right {
+      @include zen-grid-item(1, 2);
+    }
+  }
+
+  .center {
+    @include zen-clear();
+
+    // Same as the min height of the bottom.
+    padding-bottom: (100% / 3);
+
+    // Place this in the middle.
+    position: absolute;
+    top: (100% / 3);
+    bottom: 0;
+    width:100%;
+  }
+
+  .bottom {
+    // Attached it to the bottom of the page.
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width:100%;
+  }
+}

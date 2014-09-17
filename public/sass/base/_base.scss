@@ -1,0 +1,62 @@
+/**
+ * Base
+ *
+ * Contains styling and reset of basic elements
+ */
+
+body {
+  @extend %font-light;
+  font-size: 20px;
+
+  background-color: #000;
+
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+/* Links
+   ================================================================================================================== */
+
+a {
+  color: $link-color;
+
+  &:link,
+  &:visited {
+    text-decoration: underline;
+  }
+
+  &:hover,
+  &:focus {
+      text-decoration: none;
+  }
+}
+
+/* Paragraph
+   ================================================================================================================== */
+
+p {
+  margin-top: 0;
+}
+
+/* Image
+   ================================================================================================================== */
+
+img {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  vertical-align: bottom;
+}

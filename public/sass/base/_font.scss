@@ -1,0 +1,41 @@
+/**
+ * @file
+ * Loads the fonts and icons.
+ **/
+@import "compass/css3/font-face";
+
+// Include base vars
+@import "base/_vars";
+
+@include font-face("HelveticaNeue-UltraLight", font-files("../font/HelveticaNeue-UltraLight.ttf", "../font/HelveticaNeue-UltraLight.otf"));
+
+%font-ultraLight {
+  font-family: "HelveticaNeue-UltraLight";
+  font-style: normal;
+  font-weight: 100;
+
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+}
+
+@include font-face("HelveticaNeue-Light", font-files("../font/HelveticaNeue-Light.ttf", "../font/HelveticaNeue-Light.otf"));
+
+%font-light {
+  font-family: "HelveticaNeue-Light";
+  font-style: normal;
+  font-weight: 200;
+
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+}
+
+@include font-face("HelveticaNeue-Medium", font-files("../font/HelveticaNeue-Medium.ttf", "../font/HelveticaNeue-Medium.otf"));
+
+%font-medium {
+  font-family: "HelveticaNeue-Medium";
+  font-style: normal;
+  font-weight: 400;
+
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+}
