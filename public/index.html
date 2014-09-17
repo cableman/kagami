@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kagami</title>
+    <link rel="stylesheet" type="text/css" href="css/weather-icons.css">
+    <link rel='stylesheet' type="text/css" href='css/styles.css' />
+  </head>
+  <body>
+    <div class="content" data-ng-app="kagamiApp">
+      <div class="top">
+        <div class="left" data-ng-controller="region1Controller">
+          <div data-ng-include src="'views/region/1'"></div>
+        </div>
+        <div class="right" data-ng-controller="region2Controller">
+          <div data-ng-include src="'views/region/2'"></div>
+        </div>
+      </div>
+      <div class="center">
+        <div class="left" data-ng-controller="region3Controller">
+          <div data-ng-include src="'views/region/3'"></div>
+        </div>
+        <div class="right" data-ng-controller="region4Controller">
+          <div data-ng-include src="'views/region/4'"></div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="left" data-ng-controller="region5Controller">
+          <div data-ng-include src="'views/region/5'"></div>
+        </div>
+        <div class="right" data-ng-controller="region6Controller">
+          <div data-ng-include src="'views/region/6'"></div>
+        </div>
+      </div>
+      <div data-ng-controller="kagamiController">
+        <div data-ng-include src="'views/kagami.html'"></div>
+      </div>
+    </div>
+
+    <!-- Load framework scripts -->
+    <script src="js/angular.min.js"></script>
+
+    <!-- Load utils -->
+    <script src="socket.io/socket.io.js"></script>
+
+    <!-- Load region scripts -->
+    <script src="js/kagami.js"></script>
+  </body>
+</html>

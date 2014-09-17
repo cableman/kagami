@@ -26,52 +26,17 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
   }
 
   /**
-   * Check if a valied token exists.
-   *
-   * If a token is found and connection to the backend is attampted
-   * else alter is displayed.
-   */
-  function authenticate(auth_hash, deferred) {
-    // Build ajax post request.
-    var request = new XMLHttpRequest();
-    request.open('POST', '//localhost:3000/auth', true);
-    request.setRequestHeader('Content-Type', 'application/json');
-
-    request.onload = function(resp) {
-      if (request.readyState === 4 && request.status === 200) {
-        // Success.
-        resp = JSON.parse(request.responseText);
-
-        // Try to get connection to the proxy.
-        getSocket(resp.token, deferred);
-      }
-      else {
-        // We reached our target server, but it returned an error
-        deferred.reject('Authentication could not be performed.');
-      }
-    };
-
-    request.onerror = function(exception) {
-      // There was a connection error of some sort
-      deferred.reject('Authentication request failed.');
-    };
-
-    // Send the request.
-    request.send(JSON.stringify({ "api_key": auth_hash }));
-  }
-
-  /**
    * Connect to the web-socket.
    *
    * @param string token
    *   JWT authentication token from the activation request.
    */
-  function getSocket(token, deferred) {
+  function getSocket(deferred) {
     // Get connected to the server.
-    socket = io.connect('http://localhost:3000', { query: 'token=' + token });
+    socket = io.connect('http://localhost:3000');
 
     // Handle error events.
-    socket.socket.on('error', function (reason) {
+    socket.on('error', function (reason) {
       deferred.reject(reason);
     });
 
@@ -98,7 +63,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
     // Try to connect to the server if not allready connected.
     if (socket === undefined) {
       // Create the connection by authenticate this mirror.
-      authenticate("2842955b38e4afa1c6d2222b7e39d256", deferred);
+      getSocket(deferred);
     }
     else {
       deferred.resolve('Connected to the server.');

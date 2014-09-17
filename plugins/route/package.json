@@ -1,0 +1,11 @@
+{
+  "name": "Route",
+  "description": "Provides express routes",
+  "version": "0.0.1",
+  "main": "route.js",
+  "private": true,
+  "plugin": {
+    "provides": [ "route" ],
+    "consumes": [ "app" ]
+  }
+}
