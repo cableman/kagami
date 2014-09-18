@@ -112,7 +112,7 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
     });
 
     // Send ready message to server.
-    socket.emit('ready', { region: 'kagami' });
+    socket.emit('ready', { "region_id": 'kagami' });
   });
 });
 
