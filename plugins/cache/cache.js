@@ -269,6 +269,29 @@ Cache.prototype.hashGetAll = function hashGetAll(key, callback) {
   connectCache();
 }
 
+/**
+ * Set single value into the store.
+ *
+ * @param key
+ *   The key to store the value under.
+ * @param value
+ *   The value to store.
+ * @param expire
+ *   The expire in seconds.
+ * @param callback
+ *   Callback funcion to call on completion. It will send two parameters "err" and "res".
+ */
+Cache.prototype.setExpire = function setExpire(key, value, expire, callback) {
+  // Handle connection event.
+  this.once('connected', function () {
+    // Set the value into service.
+    service.setex(key, expire, value, callback);
+  });
+
+  // Connect.
+  connectCache();
+}
+
 // Register the plugin.
 module.exports = function (options, imports, register) {
   // Store the config in the scope.

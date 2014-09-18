@@ -27,7 +27,7 @@ function load(file) {
  * Define the Configuration object (constructor).
  */
 var Configuration = function(file) {
-  this.files = file;
+  this.file = file;
 
   // Ensure that the configutation is loaded.
   load(file);
@@ -48,6 +48,6 @@ Configuration.prototype.get = function get(property) {
 
 module.exports = function (options, imports, register) {
   register(null, {
-    "configutaion": Configuration;
+    "configuration": Configuration
   });
 };
