@@ -132,10 +132,10 @@ kagamiApp.directive('region', ['socket', function(socket) {
     },
     link: function(scope, element, attrs) {
       socket.connect().then(function(result) {
-        socket.emit('ready', { region: scope.id });
+        socket.emit('ready', { "region_id": scope.id });
 
         socket.on('region-view-' + scope.id, function(data) {
-          element.append('<h2>TEST</h2>');
+          element.append(data.view);
         });
 
         socket.on('region-data-' + scope.id, function(data) {

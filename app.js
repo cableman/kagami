@@ -28,10 +28,10 @@ var config = [
     "packagePath": "./plugins/socket"
   },
   {
-    "packagePath": "./plugins/kagami",
-    "region": {
-      'regions-1': 1
-    }
+    "packagePath": "./plugins/kagami"
+  },
+  {
+    "packagePath": "./plugins/dummy_content"
   }
 ];
 

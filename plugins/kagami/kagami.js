@@ -22,20 +22,38 @@ module.exports = function (options, imports, register) {
   // Create the event bus.
   var emitter = new EventEmitter();
 
+  var kagami = {
+    emit: emitter.emit,
+    on: emitter.on,
+    once: emitter.once
+  };
+
   // Listen to regions ready socket events and send the into the bus.
   sio.on('connection', function (socket) {
     logger.debug('Client connected: ' + socket.id);
 
     // Wait for ready event from the front end regions.
     socket.on('ready', function(data) {
-      logger.debug('Region ready: ' + data.region);
+      logger.debug('Region ready: ' + data.region_id);
+
+      // Relay ready event as request for HTML view.
+      kagami.emit('request-view', data);
+    });
+
+    // Get view (html request).
+    kagami.on('response-view', function (data) {
+      // Data should aways contain region id and view.
+      socket.emit('region-view-' + data.region_id, data);
+    });
+
+    // Get request for data.
+    kagami.on('response-content', function(data) {
+      // Data should aways contain region id and content.
+      socket.emit('region-content-' + data.region_id, data);
     });
   });
 
   register(null, {
-    'kagami': {
-      emit: emitter.emit,
-      on: emitter.on
-    }
+    'kagami': kagami
   });
 };
