@@ -124,7 +124,7 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
 /**
  * Directive to insert a screen.
  */
-kagamiApp.directive('region', ['socket', function(socket) {
+kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) {
   return {
     restrict: 'E',
     scope: {
@@ -135,11 +135,16 @@ kagamiApp.directive('region', ['socket', function(socket) {
         socket.emit('ready', { "region_id": scope.id });
 
         socket.on('region-view-' + scope.id, function(data) {
-          element.append(data.view);
-        });
+          // Compile the HTML view/template.
+          var el = angular.element('<span/>');
+          el.append(data.view);
+          $compile(el)(scope);
+          element.append(el);
 
-        socket.on('region-data-' + scope.id, function(data) {
-          element.append('<h2>DATA</h2>');
+          // Listen for data.
+          socket.on('region-content-' + scope.id, function(data) {
+            scope.data = data.view;
+          });
         });
       });
     }

@@ -428,7 +428,7 @@ WorldWeatherOnline.prototype.fetch = function fetch() {
       self.emit('fetched');
     }
     else {
-      self.logger.error('Unable to fetch weather information.');
+      self.logger.error('WWO: Unable to fetch weather information.');
     }
   });
 }
@@ -455,7 +455,7 @@ WorldWeatherOnline.prototype.getCache = function getCache() {
       }
     }
     else {
-      self.logger.error('Cache encounted an error');
+      self.logger.error('WWO: Cache encounted an error in get.');
     }
   });
 }
@@ -465,14 +465,14 @@ WorldWeatherOnline.prototype.getCache = function getCache() {
  */
 WorldWeatherOnline.prototype.setCache = function setCache() {
   var self = this;
-  var refresh = self.conf.get('refresh');
+  var refresh = Number(self.conf.get('refresh'));
   if (refresh !== undefined) {
-    self.cache.setExpire(self.cacheKey, refresh * 60, JSON.stringify(self.data), function(error, res) {
+    self.cache.setExpire(self.cacheKey, JSON.stringify(self.data), refresh * 60, function(error, res) {
       if (!error) {
          self.emit('cached', { code: 200 });
       }
       else {
-        self.logger.error('Cache encounted an error');
+        self.logger.error('WWO: Cache encounted an error in set expire.');
       }
     });
   }
@@ -482,10 +482,28 @@ WorldWeatherOnline.prototype.setCache = function setCache() {
          self.emit('cached', { code: 200 });
       }
       else {
-        self.logger.error('Cache encounted an error');
+        self.logger.error('WWO: Cache encounted an error in set.');
       }
     });
   }
+}
+
+/**
+ * Load template based
+ */
+WorldWeatherOnline.prototype.loadTemplate = function loadTemplate() {
+  var self = this;
+  var fs = require('fs')
+  fs.readFile(__dirname + '/' + self.conf.get('view'), 'utf8', function (err, data) {
+    if (err) {
+      self.logger.error('WWO: Error reading template file.');
+    }
+
+    self.emit('template', {
+      'region_id': self.conf.get('region_id'),
+      'view': data
+    });
+  });
 }
 
 /**
@@ -502,25 +520,32 @@ module.exports = function (options, imports, register) {
   // Connect to the event bus.
   var kagami = imports.kagami;
 
-  // Listen to all request view events.
-  kagami.on('request-view', function(data) {
-    // Return test data in response to view request.
-    kagami.emit('response-view', {
-      'region_id': data.region_id,
-      'view': '<h3>Region <em>' + data.region_id + '</em></h3>'
-    });
-  });
-
   // Send content to kagami.
   weather.on('ready', function (data) {
     kagami.emit('response-content', {
-      'region_id': data.region_id,
-      'content': data.content
+      'region_id': conf.get('region_id'),
+      'view': weather.getData()
     });
   });
 
-  // Start the weather plugin.
-  weather.init();
+  // Load template from configuration.
+  weather.on('template', function (data) {
+    // Return test data in response to view request.
+    kagami.emit('response-view', data);
+
+    // Start the weather plugin as template is sent.
+    weather.init();
+  });
+
+  // Listen to all request view events.
+  kagami.on('request-view', function(data) {
+    var region_id = data.region_id;
+
+    if (conf.get('region_id') == region_id) {
+      // Load the template from the filesystem.
+      weather.loadTemplate();
+    }
+  });
 
   /**
    * Register the plugin with architect.
