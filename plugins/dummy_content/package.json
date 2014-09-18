@@ -1,0 +1,10 @@
+{
+  "name": "Dummmy content",
+  "description": "Provides test data for the framework.",
+  "version": "0.0.1",
+  "main": "dummy_content.js",
+  "private": true,
+  "plugin": {
+    "consumes": [ "kagami" ]
+  }
+}
