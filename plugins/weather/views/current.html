@@ -1,0 +1,17 @@
+<!-- Simply display the current weather for today -->
+<div class="weather" data-ng-show="data">
+  <div class="current-temp">
+    <i class="{{ data.weatherIcons[data.weatherIconType] }} icon"></i>
+    <span>{{ data.temp_C }}</span><i class="wi-degrees"></i>
+  </div>
+  <div class="info">
+    <span class="wind">
+      <i class="{{ data.winddirIcon }} icon"></i>
+      <span class="speed">{{ data.windspeedMs | number:1}} m/s</span>
+    </span>
+    <span class="sun">
+      <i class="wi-sunrise icon"></i><span class="sunrise">{{ data.sun.rise | date:'HH:mm' }}</span>
+      <i class="wi-sunset icon"></i><span class="sunset">{{ data.sun.set | date:'HH:mm' }}</span>
+    </span>
+  </div>
+</div>
