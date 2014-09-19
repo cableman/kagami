@@ -313,7 +313,7 @@ WorldWeatherOnline.prototype.getData = function getData() {
   }
 
   // The default return value.
-  var content = [];
+  var content = { };
 
   // Switch over the different formats.
   switch (self.conf.format) {

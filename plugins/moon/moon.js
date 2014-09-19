@@ -59,9 +59,9 @@ MoonPhase.prototype.init = function init() {
   var self = this;
 
   setInterval(function() {
-    self.getData();
+    self.emit('ready');
   }, self.conf.refresh * 60 * 1000);
-  self.getData();
+  self.emit('ready');
 }
 
 /**
@@ -74,27 +74,17 @@ MoonPhase.prototype.getData = function getData() {
   // Load moment library.
   var moment = require('moment');
 
-  // The default return value.
-  var content = [];
-
-  // Get sun times.
+  // Get moon information.
   var pos = SunCalc.getMoonPosition(new Date(), self.conf.latitude, self.conf.longitude)
   var illumination = SunCalc.getMoonIllumination(new Date());
-  console.log(pos.distance);
 
-  console.log(illumination.phase);
+  // Calculate the nearste 0.125 (1/0.125 = 8).
+  var iconIndex = (Math.round(illumination.phase * 8) / 8).toFixed(3);
 
-  // Phase   Name
-  // 0     New Moon
-  //       Waxing Crescent
-  // 0.25  First Quarter
-  //       Waxing Gibbous
-  // 0.5   Full Moon
-  //       Waning Gibbous
-  // 0.75  Last Quarter
-  //       Waning Crescent
-
-  return content;
+  return {
+    "icon": moonIcons[iconIndex],
+    "distance": pos.distance
+  };
 }
 
 /**
@@ -128,14 +118,13 @@ module.exports = function (options, imports, register) {
   // Connect to the event bus.
   var kagami = imports.kagami;
 
-  moon.getData();
-  // // Send content to kagami.
-  // weather.on('ready', function (data) {
-  //   kagami.emit('response-content', {
-  //     'region_id': config.region_id,
-  //     'view': weather.getData()
-  //   });
-  // });
+  // Send content to kagami.
+  moon.on('ready', function (data) {
+    kagami.emit('response-content', {
+      'region_id': config.region_id,
+      'view': moon.getData()
+    });
+  });
 
   // Load template from configuration.
   moon.on('template', function (data) {

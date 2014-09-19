@@ -1,7 +1,7 @@
 <!-- Simply display current moon and distance to it -->
 <div class="moon" data-ng-show="data">
-  <i class="wi {{ data.icon }}"></i>
+  <i class="wi {{ data.icon }} icon"></i>
   <div class="info">
-    <span>{{ data.distance }} Km</span>
+    <span>{{ data.distance | number:0 }} Km</span>
   </div>
 </div>
