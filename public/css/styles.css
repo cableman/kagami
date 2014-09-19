@@ -1,64 +1,504 @@
-/*
-Syntax error: File to import not found or unreadable: zen.
-              Load paths:
-                /Users/cableman/source/off-work/kagami/public/sass
-                /Applications/CodeKit.app/Contents/Resources/engines/compass/compass-core/stylesheets
-                /Users/cableman/source/off-work/kagami/public/sass
-                Compass::SpriteImporter
-                Sass::Globbing::Importer
-        on line 11 of /Users/cableman/source/off-work/kagami/public/sass/styles.scss
+/**
+ * Stylesheet import
+ */
+/* Compass */
+/* Zen Grids - http://zengrids.com */
+/**
+ * Variables
+ */
+/* Layout
+   ================================================================================================================== */
+/* Colors
+   ================================================================================================================== */
+/* Typograhy
+   ================================================================================================================== */
+/* Spacing
+   ================================================================================================================== */
+/**
+ * @file
+ * Loads the fonts and icons.
+ **/
+@font-face {
+  font-family: "HelveticaNeue-UltraLight";
+  src: url('/font/../font/HelveticaNeue-UltraLight.ttf?1401220633') format('truetype'), url('/font/../font/HelveticaNeue-UltraLight.otf') format('opentype'); }
+@font-face {
+  font-family: "HelveticaNeue-Light";
+  src: url('/font/../font/HelveticaNeue-Light.ttf?1401220633') format('truetype'), url('/font/../font/HelveticaNeue-Light.otf') format('opentype'); }
+/* line 23, ../sass/base/_font.scss */
+body {
+  font-family: "HelveticaNeue-Light";
+  font-style: normal;
+  font-weight: 200;
+  color: white;
+  -webkit-font-smoothing: antialiased; }
 
-Backtrace:
-/Users/cableman/source/off-work/kagami/public/sass/styles.scss:11
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/import_node.rb:66:in `rescue in import'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/import_node.rb:45:in `import'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/import_node.rb:28:in `imported_file'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/import_node.rb:37:in `css_import?'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:283:in `visit_import'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `block in with_base'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:121:in `with_frame'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/stack.rb:79:in `with_base'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:152:in `visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:52:in `map'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:151:in `visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/root_node.rb:20:in `render'
-/Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/engine.rb:274:in `render'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass-import-once/lib/compass/import-once/engine.rb:17:in `block in render'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass-import-once/lib/compass/import-once/engine.rb:29:in `with_import_scope'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass-import-once/lib/compass/import-once/engine.rb:16:in `render'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:171:in `block (2 levels) in compile'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:153:in `timed'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:166:in `block in compile'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/logger.rb:46:in `red'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:165:in `compile'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:144:in `compile_if_required'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:129:in `block (2 levels) in run'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:127:in `each'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:127:in `block in run'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:153:in `timed'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/compiler.rb:126:in `run'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/commands/update_project.rb:49:in `perform'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/commands/base.rb:18:in `execute'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/commands/project_base.rb:19:in `execute'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/bin/compass:52:in `block in <main>'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/bin/compass:66:in `call'
-/Applications/CodeKit.app/Contents/Resources/engines/compass/compass/bin/compass:66:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: zen.\A               Load paths:\A                 /Users/cableman/source/off-work/kagami/public/sass\A                 /Applications/CodeKit.app/Contents/Resources/engines/compass/compass-core/stylesheets\A                 /Users/cableman/source/off-work/kagami/public/sass\A                 Compass::SpriteImporter\A                 Sass::Globbing::Importer\A         on line 11 of /Users/cableman/source/off-work/kagami/public/sass/styles.scss"; }
+@font-face {
+  font-family: "HelveticaNeue-Medium";
+  src: url('/font/../font/HelveticaNeue-Medium.ttf?1401220633') format('truetype'), url('/font/../font/HelveticaNeue-Medium.otf') format('opentype'); }
+/* line 34, ../sass/base/_font.scss */
+.weather .info, .weather .forcast, .moon .title, .moon .info {
+  font-family: "HelveticaNeue-Medium";
+  font-style: normal;
+  font-weight: 400;
+  color: white;
+  -webkit-font-smoothing: antialiased; }
+
+/**
+ * Normalize
+ *
+ * Normalize.css v2.1.2 | MIT License | git.io/normalize
+ */
+/* HTML5 display definitions
+   ================================================================================================================== */
+/* Correct `block` display not defined in IE 8/9. */
+/* line 14, ../sass/base/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/* Correct `inline-block` display not defined in IE 8/9. */
+/* line 32, ../sass/base/_normalize.scss */
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+/* Prevent modern browsers from displaying `audio` without controls. */
+/* Remove excess height in iOS 5 devices. */
+/* line 42, ../sass/base/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/* Address styling not present in IE 8/9. */
+/* line 49, ../sass/base/_normalize.scss */
+[hidden] {
+  display: none; }
+
+/* Base
+   ================================================================================================================== */
+/* 1. Set default fontello family to sans-serif. */
+/* 2. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
+/* line 60, ../sass/base/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/* Remove default margin. */
+/* line 69, ../sass/base/_normalize.scss */
+body {
+  margin: 0; }
+
+/* Links
+   ================================================================================================================== */
+/* Address `outline` inconsistency between Chrome and other browsers. */
+/* line 79, ../sass/base/_normalize.scss */
+a:focus {
+  outline: thin dotted; }
+
+/* Improve readability when focused and also mouse hovered in all browsers. */
+/* line 85, ../sass/base/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* Typography
+   ================================================================================================================== */
+/* Address variable `h1` fontello-size and margin within `section` and `article` */
+/* contexts in Firefox 4+, Safari 5, and Chrome. */
+/* line 96, ../sass/base/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* Address styling not present in IE 8/9, Safari 5, and Chrome. */
+/* line 103, ../sass/base/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/* Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */
+/* line 109, ../sass/base/_normalize.scss */
+b,
+strong {
+  font-weight: bold; }
+
+/* Address styling not present in Safari 5 and Chrome. */
+/* line 116, ../sass/base/_normalize.scss */
+dfn {
+  font-style: italic; }
+
+/* Address differences between Firefox and other browsers. */
+/* line 122, ../sass/base/_normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/* Address styling not present in IE 8/9. */
+/* line 130, ../sass/base/_normalize.scss */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/* Correct fontello family set oddly in Safari 5 and Chrome. */
+/* line 137, ../sass/base/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/* Improve readability of pre-formatted text in all browsers. */
+/* line 147, ../sass/base/_normalize.scss */
+pre {
+  white-space: pre-wrap; }
+
+/* Set consistent quote types. */
+/* line 153, ../sass/base/_normalize.scss */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/* Address inconsistent and variable fontello size in all browsers. */
+/* line 159, ../sass/base/_normalize.scss */
+small {
+  font-size: 80%; }
+
+/* Prevent `sub` and `sup` affecting `line-height` in all browsers. */
+/* line 165, ../sass/base/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+/* line 173, ../sass/base/_normalize.scss */
+sup {
+  top: -0.5em; }
+
+/* line 177, ../sass/base/_normalize.scss */
+sub {
+  bottom: -0.25em; }
+
+/* Embedded content
+   ================================================================================================================== */
+/* Remove border when inside `a` element in IE 8/9. */
+/* line 187, ../sass/base/_normalize.scss */
+img {
+  border: 0; }
+
+/* Correct overflow displayed oddly in IE 9. */
+/* line 193, ../sass/base/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Figures
+   ================================================================================================================== */
+/* Address margin not present in IE 8/9 and Safari 5. */
+/* line 203, ../sass/base/_normalize.scss */
+figure {
+  margin: 0; }
+
+/* Forms
+   ================================================================================================================== */
+/* Define consistent border, margin, and padding. */
+/* line 213, ../sass/base/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/* 1. Correct `color` not being inherited in IE 8/9. */
+/* 2. Remove padding so people aren't caught out if they zero out fieldsets. */
+/* line 222, ../sass/base/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/* 1. Correct fontello family not being inherited in all browsers. */
+/* 2. Correct fontello size not being inherited in all browsers. */
+/* 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. */
+/* line 231, ../sass/base/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/* Address Firefox 4+ setting `line-height` on `input` using `!important` in */
+/* the UA stylesheet. */
+/* line 243, ../sass/base/_normalize.scss */
+button,
+input {
+  line-height: normal; }
+
+/* Address inconsistent `text-transform` inheritance for `button` and `select`. */
+/* All other form control elements do not inherit `text-transform` values. */
+/* Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+. */
+/* Correct `select` style inheritance in Firefox 4+ and Opera. */
+/* line 253, ../sass/base/_normalize.scss */
+button,
+select {
+  text-transform: none; }
+
+/* 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls. */
+/* 2. Correct inability to style clickable `input` types in iOS. */
+/* 3. Improve usability and consistency of cursor style between image-type `input` and others. */
+/* line 262, ../sass/base/_normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/* Re-set default cursor for disabled elements. */
+/* line 272, ../sass/base/_normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/* 1. Address box sizing set to `content-box` in IE 8/9. */
+/* 2. Remove excess padding in IE 8/9. */
+/* line 280, ../sass/base/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/* 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome. */
+/* 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome (include `-moz` to future-proof). */
+/* line 289, ../sass/base/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/* Remove inner padding and search cancel button in Safari 5 and Chrome on OS X. */
+/* line 298, ../sass/base/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/* Remove inner padding and border in Firefox 4+. */
+/* line 305, ../sass/base/_normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/* 1. Remove default vertical scrollbar in IE 8/9. */
+/* 2. Improve readability and alignment in all browsers. */
+/* line 314, ../sass/base/_normalize.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* Tables
+   ================================================================================================================== */
+/* Remove most spacing between table cells. */
+/* line 325, ../sass/base/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/**
+ * Base
+ *
+ * Contains styling and reset of basic elements
+ */
+/* line 7, ../sass/base/_base.scss */
+body {
+  font-size: 20px;
+  background-color: #000;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+/* line 18, ../sass/base/_base.scss */
+strong {
+  font-weight: bold; }
+
+/* line 22, ../sass/base/_base.scss */
+em {
+  font-style: italic; }
+  /* line 25, ../sass/base/_base.scss */
+  em strong {
+    font-weight: bold; }
+
+/* Links
+   ================================================================================================================== */
+/* line 33, ../sass/base/_base.scss */
+a {
+  color: white; }
+  /* line 36, ../sass/base/_base.scss */
+  a:link, a:visited {
+    text-decoration: underline; }
+  /* line 41, ../sass/base/_base.scss */
+  a:hover, a:focus {
+    text-decoration: none; }
+
+/* Paragraph
+   ================================================================================================================== */
+/* line 50, ../sass/base/_base.scss */
+p {
+  margin-top: 0; }
+
+/* Image
+   ================================================================================================================== */
+/* line 57, ../sass/base/_base.scss */
+img {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  vertical-align: bottom; }
+
+/**
+ * Layouts
+ */
+/* line 5, ../sass/theme/_layout.scss */
+.content {
+  width: 100%; }
+  /* line 8, ../sass/theme/_layout.scss */
+  .content .top, .content .center, .content .bottom {
+    min-height: 33.33333%; }
+    /* line 45, ../../../../../../../Library/Ruby/Gems/1.8/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+    .content .top:before, .content .top:after, .content .center:before, .content .center:after, .content .bottom:before, .content .bottom:after {
+      content: "";
+      display: table; }
+    /* line 50, ../../../../../../../Library/Ruby/Gems/1.8/gems/zen-grids-1.4/stylesheets/zen/_grids.scss */
+    .content .top:after, .content .center:after, .content .bottom:after {
+      clear: both; }
+    /* line 12, ../sass/theme/_layout.scss */
+    .content .top .left, .content .center .left, .content .bottom .left {
+      float: left;
+      width: 50%;
+      margin-left: 0%;
+      margin-right: -50%;
+      padding-left: 5px;
+      padding-right: 5px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word; }
+    /* line 15, ../sass/theme/_layout.scss */
+    .content .top .right, .content .center .right, .content .bottom .right {
+      float: left;
+      width: 50%;
+      margin-left: 50%;
+      margin-right: -100%;
+      padding-left: 5px;
+      padding-right: 5px;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      word-wrap: break-word; }
+  /* line 20, ../sass/theme/_layout.scss */
+  .content .center {
+    clear: left;
+    padding-bottom: 33.33333%;
+    position: absolute;
+    top: 33.33333%;
+    bottom: 0;
+    width: 100%; }
+  /* line 33, ../sass/theme/_layout.scss */
+  .content .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; }
+
+/**
+ * @file
+ * Handle style for the different views.
+ */
+/* line 6, ../sass/theme/_views.scss */
+.kagami {
+  position: absolute;
+  bottom: 0px;
+  width: 200px;
+  text-align: center; }
+  /* line 13, ../sass/theme/_views.scss */
+  .kagami img {
+    width: 50px; }
+  /* line 17, ../sass/theme/_views.scss */
+  .kagami .message {
+    font-size: 70%; }
+
+/* line 2, ../sass/theme/_weather.scss */
+.weather .current-temp {
+  font-size: 400%;
+  text-align: center; }
+  /* line 6, ../sass/theme/_weather.scss */
+  .weather .current-temp .icon {
+    padding-right: 20px; }
+/* line 11, ../sass/theme/_weather.scss */
+.weather .info {
+  text-align: center; }
+  /* line 15, ../sass/theme/_weather.scss */
+  .weather .info .icon {
+    padding-right: 8px; }
+  /* line 19, ../sass/theme/_weather.scss */
+  .weather .info .wind {
+    padding-right: 40px; }
+/* line 24, ../sass/theme/_weather.scss */
+.weather .forcast {
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 0; }
+  /* line 30, ../sass/theme/_weather.scss */
+  .weather .forcast .icon {
+    padding-right: 8px; }
+  /* line 35, ../sass/theme/_weather.scss */
+  .weather .forcast .weather-icon i:before {
+    text-align: center;
+    width: 35px; }
+  /* line 41, ../sass/theme/_weather.scss */
+  .weather .forcast .weekday,
+  .weather .forcast .temp {
+    padding-right: 20px; }
+
+/* line 1, ../sass/theme/_moon.scss */
+.moon {
+  text-align: center; }
+  /* line 4, ../sass/theme/_moon.scss */
+  .moon .icon {
+    font-size: 600%; }
+  /* line 8, ../sass/theme/_moon.scss */
+  .moon .title {
+    display: block;
+    font-size: 150%;
+    padding-bottom: 8px; }

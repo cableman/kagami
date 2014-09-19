@@ -1,0 +1,19 @@
+.moon {
+  text-align: center;
+
+  .icon {
+    font-size: 600%;
+  }
+
+  .title {
+    @extend %font-medium;
+
+    display: block;
+    font-size: 150%;
+    padding-bottom: 8px;
+  }
+
+  .info {
+    @extend %font-medium;
+  }
+}

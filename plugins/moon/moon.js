@@ -81,8 +81,14 @@ MoonPhase.prototype.getData = function getData() {
   // Calculate the nearste 0.125 (1/0.125 = 8).
   var iconIndex = (Math.round(illumination.phase * 8) / 8).toFixed(3);
 
+  var title = 'Waxing';
+  if (illumination.phase > 0.499) {
+    title = 'Waning';
+  }
+
   return {
     "icon": moonIcons[iconIndex],
+    "title": title,
     "distance": pos.distance
   };
 }
