@@ -228,7 +228,11 @@ var windIcons = {
  * Define the WorldWeatherOnline object.
  *
  * @param object conf
- *   The configuration or options object should contain:
+ *   The configuration should contain the information described below.
+ * @param object cache
+ *   Ref. to the cache object.
+ * @param object logger
+ *   Ref. to the logger object.
  *
  * {
  *   "region_id": 1,
