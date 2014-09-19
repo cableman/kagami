@@ -13,7 +13,6 @@
     "consumes": [
       "kagami",
       "cache",
-      "configuration",
       "logger"
     ]
   }

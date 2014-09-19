@@ -20,9 +20,6 @@ var config = [
     }
   },
   {
-    "packagePath": "./plugins/configuration"
-  },
-  {
     "packagePath": "./plugins/server",
     "port": "3000",
     "path": path.join(__dirname, 'public')
@@ -35,6 +32,9 @@ var config = [
   },
   {
     "packagePath": "./plugins/weather"
+  },
+  {
+    "packagePath": "./plugins/moon"
   }
 ];
 

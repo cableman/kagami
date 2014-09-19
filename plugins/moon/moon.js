@@ -8,18 +8,19 @@ var util = require('util');
 var eventEmitter = require('events').EventEmitter;
 var SunCalc = require('suncalc');
 
+// : 'wi-moon-young',
+// : 'wi-moon-old',
 var moonIcons = {
-  "0.5": 'wi-moon-full',
-  "": 'wi-moon-waxing-gibbous',
-  "": 'wi-moon-waxing-quarter',
-  "": 'wi-moon-waxing-crescent',
-  "": 'wi-moon-young',
   "0": 'wi-moon-new',
-  "": 'wi-moon-old',
-  "": 'wi-moon-waning-crescent',
-  "": 'wi-moon-waning-quarter',
-  "": 'wi-moon-waning-gibbous'
-}
+  "0.125": 'wi-moon-waxing-crescent',
+  "0.250": 'wi-moon-waxing-quarter',
+  "0.375": 'wi-moon-waxing-gibbous',
+  "0.500": 'wi-moon-full',
+  "0.625": 'wi-moon-waning-crescent',
+  "0.750": 'wi-moon-waning-quarter',
+  "0.875": 'wi-moon-waning-gibbous',
+  "1": 'wi-moon-new'
+};
 
 /**
  * Define the Yr object.
@@ -59,7 +60,7 @@ MoonPhase.prototype.init = function init() {
 
   setInterval(function() {
     self.getData();
-  }, self.conf.get('refresh') * 60 * 1000);
+  }, self.conf.refresh * 60 * 1000);
   self.getData();
 }
 
@@ -77,7 +78,7 @@ MoonPhase.prototype.getData = function getData() {
   var content = [];
 
   // Get sun times.
-  var pos = SunCalc.getMoonPosition(new Date(), self.conf.get('latitude') , self.conf.get('longitude'))
+  var pos = SunCalc.getMoonPosition(new Date(), self.conf.latitude, self.conf.longitude)
   var illumination = SunCalc.getMoonIllumination(new Date());
   console.log(pos.distance);
 
@@ -102,13 +103,13 @@ MoonPhase.prototype.getData = function getData() {
 MoonPhase.prototype.loadTemplate = function loadTemplate() {
   var self = this;
   var fs = require('fs')
-  fs.readFile(__dirname + '/' + self.conf.get('view'), 'utf8', function (err, data) {
+  fs.readFile(__dirname + '/' + self.conf.view, 'utf8', function (err, data) {
     if (err) {
       self.logger.error('Moon: Error reading template file.');
     }
 
     self.emit('template', {
-      'region_id': self.conf.get('region_id'),
+      'region_id': self.conf.region_id,
       'view': data
     });
   });
@@ -118,12 +119,11 @@ MoonPhase.prototype.loadTemplate = function loadTemplate() {
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
-  // Load configuration file.
-  var configuration = imports.configuration;
-  var conf = new imports.configuration(__dirname + '/config.json');
+  // Load config file.
+  var config = require(__dirname + '/config.json');
 
   // Get connected to the weather service.
-  var moon = new MoonPhase(conf, imports.logger);
+  var moon = new MoonPhase(config, imports.logger);
 
   // Connect to the event bus.
   var kagami = imports.kagami;
@@ -132,7 +132,7 @@ module.exports = function (options, imports, register) {
   // // Send content to kagami.
   // weather.on('ready', function (data) {
   //   kagami.emit('response-content', {
-  //     'region_id': conf.get('region_id'),
+  //     'region_id': config.region_id,
   //     'view': weather.getData()
   //   });
   // });
@@ -150,7 +150,7 @@ module.exports = function (options, imports, register) {
   kagami.on('request-view', function(data) {
     var region_id = data.region_id;
 
-    if (conf.get('region_id') == region_id) {
+    if (config.region_id == region_id) {
       // Load the template from the filesystem.
       moon.loadTemplate();
     }

@@ -258,7 +258,7 @@ var WorldWeatherOnline = function (conf, cache, logger) {
   this.data = undefined;
 
   // Build service url base on configuration.
-  this.url = conf.get('url') + '?q=' + conf.get('city') + '&format=json&num_of_days=' + conf.get('days') + '&key=' + conf.get('key');
+  this.url = conf.url + '?q=' + conf.city + '&format=json&num_of_days=' + conf.days + '&key=' + conf.key;
 
   // Create id based on url.
   var crypto = require('crypto');
@@ -292,7 +292,7 @@ WorldWeatherOnline.prototype.init = function init() {
   // expired, so it's not a cache fetch.
   setInterval(function() {
     self._refresh();
-  }, (self.conf.get('refresh') * 60 * 1000) + 5000);
+  }, (self.conf.refresh * 60 * 1000) + 5000);
   self._refresh();
 }
 
@@ -316,7 +316,7 @@ WorldWeatherOnline.prototype.getData = function getData() {
   var content = [];
 
   // Switch over the different formats.
-  switch (self.conf.get('format')) {
+  switch (self.conf.format) {
     case 'current':
       content = self.clone(self.data.current_condition[0]);
 
@@ -419,7 +419,7 @@ WorldWeatherOnline.prototype.fetch = function fetch() {
       }
 
       // Get sun times.
-      var times = SunCalc.getTimes(new Date(), self.conf.get('latitude') , self.conf.get('longitude'));
+      var times = SunCalc.getTimes(new Date(), self.conf.latitude, self.conf.longitude);
       json.sun = {
         'rise': times.sunrise,
         'set': times.sunset
@@ -469,7 +469,7 @@ WorldWeatherOnline.prototype.getCache = function getCache() {
  */
 WorldWeatherOnline.prototype.setCache = function setCache() {
   var self = this;
-  var refresh = Number(self.conf.get('refresh'));
+  var refresh = Number(self.conf.refresh);
   if (refresh !== undefined) {
     self.cache.setExpire(self.cacheKey, JSON.stringify(self.data), refresh * 60, function(error, res) {
       if (!error) {
@@ -498,14 +498,14 @@ WorldWeatherOnline.prototype.setCache = function setCache() {
 WorldWeatherOnline.prototype.loadTemplate = function loadTemplate() {
   var self = this;
   var fs = require('fs')
-  fs.readFile(__dirname + '/' + self.conf.get('view'), 'utf8', function (err, data) {
+  fs.readFile(__dirname + '/' + self.conf.view, 'utf8', function (err, data) {
     if (err) {
       console.log(err);
       self.logger.error('WWO: Error reading template file.');
     }
 
     self.emit('template', {
-      'region_id': self.conf.get('region_id'),
+      'region_id': self.conf.region_id,
       'view': data
     });
   });
@@ -515,12 +515,11 @@ WorldWeatherOnline.prototype.loadTemplate = function loadTemplate() {
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
-  // Load configuration file.
-  var configuration = imports.configuration;
-  var conf = new imports.configuration(__dirname + '/config.json');
+  // Load config file.
+  var config = require(__dirname + '/config.json');
 
   // Get connected to the weather service.
-  var weather = new WorldWeatherOnline(conf, imports.cache, imports.logger);
+  var weather = new WorldWeatherOnline(config, imports.cache, imports.logger);
 
   // Connect to the event bus.
   var kagami = imports.kagami;
@@ -528,12 +527,12 @@ module.exports = function (options, imports, register) {
   // Send content to kagami.
   weather.on('ready', function (data) {
     kagami.emit('response-content', {
-      'region_id': conf.get('region_id'),
+      'region_id': config.region_id,
       'view': weather.getData()
     });
   });
 
-  // Load template from configuration.
+  // Template loaded from configuration.
   weather.on('template', function (data) {
     // Return test data in response to view request.
     kagami.emit('response-view', data);
@@ -546,7 +545,7 @@ module.exports = function (options, imports, register) {
   kagami.on('request-view', function(data) {
     var region_id = data.region_id;
 
-    if (conf.get('region_id') == region_id) {
+    if (config.region_id == region_id) {
       // Load the template from the filesystem.
       weather.loadTemplate();
     }
