@@ -500,6 +500,7 @@ WorldWeatherOnline.prototype.loadTemplate = function loadTemplate() {
   var fs = require('fs')
   fs.readFile(__dirname + '/' + self.conf.get('view'), 'utf8', function (err, data) {
     if (err) {
+      console.log(err);
       self.logger.error('WWO: Error reading template file.');
     }
 

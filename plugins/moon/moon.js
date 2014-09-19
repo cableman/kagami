@@ -8,6 +8,19 @@ var util = require('util');
 var eventEmitter = require('events').EventEmitter;
 var SunCalc = require('suncalc');
 
+var moonIcons = {
+  "0.5": 'wi-moon-full',
+  "": 'wi-moon-waxing-gibbous',
+  "": 'wi-moon-waxing-quarter',
+  "": 'wi-moon-waxing-crescent',
+  "": 'wi-moon-young',
+  "0": 'wi-moon-new',
+  "": 'wi-moon-old',
+  "": 'wi-moon-waning-crescent',
+  "": 'wi-moon-waning-quarter',
+  "": 'wi-moon-waning-gibbous'
+}
+
 /**
  * Define the Yr object.
  *

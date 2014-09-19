@@ -35,9 +35,6 @@ var config = [
   },
   {
     "packagePath": "./plugins/weather"
-  },
-  {
-    "packagePath": "./plugins/moon"
   }
 ];
 

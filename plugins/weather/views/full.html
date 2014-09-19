@@ -1,17 +1,17 @@
 <!-- Display the current weather forcast -->
 <div class="weather" data-ng-show="data">
   <div class="current-temp">
-    <i class="{{ data.current_condition.weatherIcons[data.current_condition.weatherIconType] }} icon"></i>
-    <span>{{ data.current_condition.temp_C }}</span><i class="wi-degrees"></i>
+    <i class="wi {{ data.current_condition.weatherIcons[data.current_condition.weatherIconType] }} icon"></i>
+    <span>{{ data.current_condition.temp_C }}</span><i class="wi wi-degrees"></i>
   </div>
   <div class="info">
     <span class="wind">
-      <i class="{{ data.current_condition.winddirIcon }} icon"></i>
+      <i class="wi {{ data.current_condition.winddirIcon }} icon"></i>
       <span class="speed">{{ data.current_condition.windspeedMs | number:1}} m/s</span>
     </span>
     <span class="sun">
-      <i class="wi-sunrise icon"></i><span class="sunrise">{{ data.sun.rise | date:'HH:mm' }}</span>
-      <i class="wi-sunset icon"></i><span class="sunset">{{ data.sun.set | date:'HH:mm' }}</span>
+      <i class="wi wi-sunrise icon"></i><span class="sunrise">{{ data.sun.rise | date:'HH:mm' }}</span>
+      <i class="wi wi-sunset icon"></i><span class="sunset">{{ data.sun.set | date:'HH:mm' }}</span>
     </span>
   </div>
   <table class="forcast">
@@ -21,15 +21,15 @@
           {{ day.date | date:'EEE' }}
         </td>
         <td class="weather-icon">
-          <i class="{{ day.weatherIcons[day.weatherIconType] }} icon"></i>
+          <i class="wi {{ day.weatherIcons[day.weatherIconType] }} icon"></i>
         </td>
         <td class="temp">
-          <span>{{ day.tempMinC | numberFixedLen:2 }}</span><i class="wi-degrees"></i>
+          <span>{{ day.tempMinC | numberFixedLen:2 }}</span><i class="wi wi-degrees"></i>
           -
-          <span>{{ day.tempMaxC | numberFixedLen:2 }}</span><i class="wi-degrees"></i>
+          <span>{{ day.tempMaxC | numberFixedLen:2 }}</span><i class="wi wi-degrees"></i>
         </td>
         <td>
-          <i class="{{ day.winddirIcon }} icon"></i>
+          <i class="wi {{ day.winddirIcon }} icon"></i>
         </td>
         <td class="wind">
           <span class="speed">{{ day.windspeedMs | number:1}} m/s</span>
