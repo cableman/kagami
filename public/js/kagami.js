@@ -1,11 +1,14 @@
 /**
  * @file
- *
+ * Defines the Angular JS application the run the kagami frontend.
  */
 
+// Define the angular application.
 var kagamiApp = angular.module('kagamiApp', []);
 
-
+/**
+ * Service to handled socket.io communication with the server.
+ */
 kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
   var socket;
   var self = this;
@@ -96,7 +99,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
 }]);
 
 /**
- * Controler used by the
+ * Controler used by the kagami logo.
  */
 kagamiApp.controller('kagamiController', function($scope, socket) {
   // Default message.
@@ -117,12 +120,7 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
 });
 
 /**
- * @file
- * Contains screen directives.
- */
-
-/**
- * Directive to insert a screen.
+ * Directive to get content for a given region.
  */
 kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) {
   return {
@@ -150,8 +148,6 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
     }
   }
 }]);
-
-
 
 /**
  * Create filter that pads a number with zero's.
