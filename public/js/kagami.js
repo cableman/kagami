@@ -141,6 +141,7 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
 
           // Listen for data.
           socket.on('region-content-' + scope.id, function(data) {
+            console.log(data.view);
             scope.data = data.view;
           });
         });

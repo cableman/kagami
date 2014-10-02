@@ -1,0 +1,9 @@
+<div class="twitter" data-ng-show="data">
+  <ul class="tweets">
+    <li class="tweet" data-ng-repeat="tweet in data.tweets">
+      <img ng-src="{{ tweet.user.profile_image_url }}" />
+      {{ tweet.user.name }} {{ tweet.user.screen_name }} - {{ tweet.timestamp_ms | date:'HH:mm:ss' }}
+      {{ tweet.text }}
+    </li>
+  </ul>
+</div>
