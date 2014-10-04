@@ -9,5 +9,6 @@
     "token": "213217591-MgxWm8jt2boGTnD6T0Gcf9uS3rlcoQQGnqKVJ32P",
     "secret": "Ox9IV64sDKDNxHVInfaNIRGhg0cO00f9H5o2gxrOfjdJY"
   },
-  "filter": [ "#drupal", "#random" ]
+  "filter": [ "#drupal", "#random" ],
+  "limit": 3
 }

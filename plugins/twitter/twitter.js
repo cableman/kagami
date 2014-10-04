@@ -49,6 +49,9 @@ TwitStream.prototype.getData = function getData() {
   var stream = this.twit.stream('statuses/filter', { "track": this.conf.filter })
 
   stream.on('tweet', function (tweet) {
+    // Remove old tweets.
+    self.tweets = self.tweets.slice(0, self.conf.limit - 1);
+
     // Add tweet to the start of the array.
     self.tweets.unshift(tweet);
 

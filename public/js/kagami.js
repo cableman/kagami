@@ -172,3 +172,18 @@ kagamiApp.filter('numberFixedLen', function () {
     return num;
   };
 });
+
+/**
+ * Create filter that pads a number with zero's.
+ */
+kagamiApp.filter('highlight', function ($sce) {
+  return function (text, type) {
+    console.log(type);
+    console.log(text);
+    if (type === 'hashtag') {
+      text = text.replace(/\B#(\w+)/g, '<span class="highlight">#$1</span>');
+    }
+
+    return $sce.trustAsHtml(text);
+  };
+});

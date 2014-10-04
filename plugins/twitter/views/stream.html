@@ -3,7 +3,7 @@
     <li class="tweet" data-ng-repeat="tweet in data.tweets">
       <img ng-src="{{ tweet.user.profile_image_url }}" />
       {{ tweet.user.name }} {{ tweet.user.screen_name }} - {{ tweet.timestamp_ms | date:'HH:mm:ss' }}
-      {{ tweet.text }}
+      <span class="content" ng-bind-html="tweet.text | highlight:'hashtag'"></span>
     </li>
   </ul>
 </div>
