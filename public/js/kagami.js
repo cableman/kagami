@@ -141,13 +141,47 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
 
           // Listen for data.
           socket.on('region-content-' + scope.id, function(data) {
-            console.log(data.view);
             scope.data = data.view;
           });
         });
       });
     }
-  }
+  };
+}]);
+
+/**
+ * Time ago directive that keeps updating the time ago.
+ */
+kagamiApp.directive('ago', ['$timeout', function($timeout) {
+  return {
+    restrict: 'E',
+    scope: {
+      time: '@',
+      interval: '@'
+    },
+    link: function(scope, element, attrs) {
+      var intervalLength = Number(scope.interval) * 1000;
+      var timeoutId;
+
+      function updateTime() {
+        element.text(moment(Number(scope.time)).fromNow());
+      }
+
+      function updateLater() {
+        timeoutId = $timeout(function() {
+          updateTime();
+          updateLater();
+        }, intervalLength);
+      }
+
+      element.bind('$destroy', function() {
+        $timeout.cancel(timeoutId);
+      });
+
+      updateTime();
+      updateLater();
+    }
+  };
 }]);
 
 /**
@@ -178,8 +212,6 @@ kagamiApp.filter('numberFixedLen', function () {
  */
 kagamiApp.filter('highlight', function ($sce) {
   return function (text, type) {
-    console.log(type);
-    console.log(text);
     if (type === 'hashtag') {
       text = text.replace(/\B#(\w+)/g, '<span class="highlight">#$1</span>');
     }

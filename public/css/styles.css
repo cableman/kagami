@@ -36,7 +36,7 @@ body {
   font-family: "HelveticaNeue-Medium";
   src: url('/font/../font/HelveticaNeue-Medium.ttf?1401220633') format('truetype'), url('/font/../font/HelveticaNeue-Medium.otf') format('opentype'); }
 /* line 34, ../sass/base/_font.scss */
-.weather .info, .weather .forcast, .moon .title, .moon .info {
+.weather .info, .weather .forcast, .moon .title, .moon .info, .twitter .tweet {
   font-family: "HelveticaNeue-Medium";
   font-style: normal;
   font-weight: 400;
@@ -502,3 +502,30 @@ img {
     display: block;
     font-size: 150%;
     padding-bottom: 8px; }
+
+/* line 3, ../sass/theme/_twitter.scss */
+.twitter .tweets {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px; }
+/* line 9, ../sass/theme/_twitter.scss */
+.twitter .tweet {
+  padding-bottom: 20px; }
+  /* line 13, ../sass/theme/_twitter.scss */
+  .twitter .tweet .info {
+    display: block; }
+    /* line 16, ../sass/theme/_twitter.scss */
+    .twitter .tweet .info .userimage {
+      float: left;
+      padding-right: 20px; }
+    /* line 21, ../sass/theme/_twitter.scss */
+    .twitter .tweet .info .username {
+      font-size: 80%;
+      color: #aaaaaa; }
+  /* line 27, ../sass/theme/_twitter.scss */
+  .twitter .tweet .content {
+    clear: left;
+    display: block; }
+/* line 33, ../sass/theme/_twitter.scss */
+.twitter .highlight {
+  color: #00eeff; }
