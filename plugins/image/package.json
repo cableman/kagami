@@ -1,0 +1,16 @@
+{
+  "name": "image",
+  "description": "Provides 500px.com image intergration.",
+  "version": "0.0.1",
+  "main": "image.js",
+  "private": true,
+  "dependencies": {
+    "500px": "0.4.x"
+  },
+  "plugin": {
+    "consumes": [
+      "kagami",
+      "logger"
+    ]
+  }
+}
