@@ -10,6 +10,8 @@ var kagamiApp = angular.module('kagamiApp', []);
  * Service to handled socket.io communication with the server.
  */
 kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
+  "use strict";
+
   var socket;
   var self = this;
 
@@ -62,7 +64,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
   this.connect = function() {
     var deferred = $q.defer();
 
-    // Try to connect to the server if not allready connected.
+    // Try to connect to the server if not already connected.
     if (socket === undefined) {
       // Create the connection by authenticate this mirror.
       getSocket(deferred);
@@ -99,9 +101,11 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
 }]);
 
 /**
- * Controler used by the kagami logo.
+ * Controller used by the Kagami logo.
  */
 kagamiApp.controller('kagamiController', function($scope, socket) {
+  "use strict";
+
   // Default message.
   $scope.message = 'Connecting to server...';
 
@@ -123,10 +127,12 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
  * Directive to get content for a given region.
  */
 kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) {
+  "use strict";
+
   return {
     restrict: 'E',
     scope: {
-      id: '@',
+      id: '@'
     },
     link: function(scope, element, attrs) {
       socket.connect().then(function(result) {
@@ -153,6 +159,8 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
  * Time ago directive that keeps updating the time ago.
  */
 kagamiApp.directive('ago', ['$timeout', function($timeout) {
+  "use strict";
+
   return {
     restrict: 'E',
     scope: {
@@ -188,6 +196,8 @@ kagamiApp.directive('ago', ['$timeout', function($timeout) {
  * Create filter that pads a number with zero's.
  */
 kagamiApp.filter('numberFixedLen', function () {
+  "use strict";
+
   return function (n, len) {
     var num = parseInt(n, 10);
     len = parseInt(len, 10);
@@ -211,6 +221,8 @@ kagamiApp.filter('numberFixedLen', function () {
  * Create filter that pads a number with zero's.
  */
 kagamiApp.filter('highlight', function ($sce) {
+  "use strict";
+
   return function (text, type) {
     if (type === 'hashtag') {
       text = text.replace(/\B#(\w+)/g, '<span class="highlight">#$1</span>');
