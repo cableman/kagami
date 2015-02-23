@@ -8,6 +8,12 @@
     "redis" : "0.10.x"
   },
   "plugin": {
-    "provides": [ "cache" ]
+    "provides": [
+      "cache"
+    ],
+    "consumes": [
+      "kagami",
+      "logger"
+    ]
   }
 }

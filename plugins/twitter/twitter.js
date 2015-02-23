@@ -117,7 +117,7 @@ module.exports = function (options, imports, register) {
     kagami.emit('response-content', {
       'region_id': config.region_id,
       'view': {
-        "tweets": data
+        'tweets': data
       }
     });
   });

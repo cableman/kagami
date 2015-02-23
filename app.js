@@ -37,7 +37,7 @@ var config = [
     "packagePath": "./plugins/moon"
   },
   {
-    "packagePath": "./plugins/twitter"
+    "packagePath": "./plugins/image"
   }
 ];
 

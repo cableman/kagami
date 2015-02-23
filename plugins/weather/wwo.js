@@ -374,7 +374,7 @@ WorldWeatherOnline.prototype._refresh = function _refresh() {
         self.once('cached', function() {
           // Send ready as data have been fetched and parsed.
           self.emit('ready');
-        })
+        });
         self.setCache();
       });
       self.fetch();

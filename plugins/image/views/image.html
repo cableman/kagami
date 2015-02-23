@@ -1,8 +1,5 @@
-<!-- Simply display current moon and distance to it -->
-<div class="moon" data-ng-show="data">
-  <i class="wi {{ data.icon }} icon"></i>
-  <span class="title">{{ data.title }}</span>
-  <div class="info">
-    <span>{{ data.distance | number:0 }} Km</span>
-  </div>
+<!-- Simply image -->
+<div class="image" data-ng-show="data.url" data-ng-show="data">
+  <img src="{{ data.url }}" />
+  <p>{{ data.name }}</p>
 </div>
