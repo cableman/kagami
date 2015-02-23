@@ -39,11 +39,13 @@ var moonIcons = {
  * }
  */
 var MoonPhase = function(conf, logger) {
+  "use strict";
+
   this.conf = conf;
   this.cache = logger;
 
   this.data = undefined;
-}
+};
 
 // Extend the object with event emitter.
 util.inherits(MoonPhase, eventEmitter);
@@ -56,23 +58,24 @@ util.inherits(MoonPhase, eventEmitter);
  * updated and an ready event emmitted.
  */
 MoonPhase.prototype.init = function init() {
+  "use strict";
+
   var self = this;
 
   setInterval(function() {
     self.emit('ready');
   }, self.conf.refresh * 60 * 1000);
   self.emit('ready');
-}
+};
 
 /**
  * The main app will call this function to get data after the
  * ready event have been fired.
  */
 MoonPhase.prototype.getData = function getData() {
-  var self = this;
+  "use strict";
 
-  // Load moment library.
-  var moment = require('moment');
+  var self = this;
 
   // Get moon information.
   var pos = SunCalc.getMoonPosition(new Date(), self.conf.latitude, self.conf.longitude)
@@ -91,12 +94,14 @@ MoonPhase.prototype.getData = function getData() {
     "title": title,
     "distance": pos.distance
   };
-}
+};
 
 /**
  * Load template based
  */
 MoonPhase.prototype.loadTemplate = function loadTemplate() {
+  "use strict";
+
   var self = this;
   var fs = require('fs')
   fs.readFile(__dirname + '/' + self.conf.view, 'utf8', function (err, data) {
@@ -109,12 +114,14 @@ MoonPhase.prototype.loadTemplate = function loadTemplate() {
       'view': data
     });
   });
-}
+};
 
 /**
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
+  "use strict";
+
   // Load config file.
   var config = require(__dirname + '/config.json');
 
@@ -155,4 +162,4 @@ module.exports = function (options, imports, register) {
    * Register the plugin with architect.
    */
   register(null, null);
-}
+};

@@ -13,6 +13,8 @@ var EventEmitter = require('events').EventEmitter;
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
+  "use strict";
+
   // Get socket.
   var sio = imports.socket;
 

@@ -12,6 +12,8 @@ var sio;
  * @TODO: Move this to an auth plugin.
  */
 var secureConnect = function secureConnectEnable(secret) {
+  "use strict";
+
   var socketio_jwt = require('socketio-jwt');
   sio.set('authorization', socketio_jwt.authorize({
     secret: secret,
@@ -28,7 +30,7 @@ var secureConnect = function secureConnectEnable(secret) {
  *   The secret key decode security token.
  */
 var SocketIO = function(server, secret) {
-  var self = this;
+  "use strict";
 
   // Get socket.io started.
   sio = require('socket.io')(server);
@@ -37,35 +39,41 @@ var SocketIO = function(server, secret) {
   if (secret !== undefined) {
     secureConnectEnable(secret);
   }
-}
+};
 
 /**
  * Sockets connection events etc.
  */
 SocketIO.prototype.on = function on(eventName, callback) {
+  "use strict";
+
   sio.on(eventName, function() {
     var args = arguments;
     callback.apply(sio, args);
   });
-}
+};
 
 /**
  * Sockets emit function.
  */
 SocketIO.prototype.emit = function emit(eventName, data, callback) {
+  "use strict";
+
   sio.emit(eventName, data, function() {
     if (callback) {
       var args = arguments;
       callback.apply(sio, args);
     }
   });
-}
+};
 
 /**
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
-  // Runned here to esure that only exists one socket server.
+  "use strict";
+
+  // Executed here to ensure that only exists one socket server.
   var socketIO = new SocketIO(imports.server, options.secret || undefined);
 
   // Register exposed function with architect.

@@ -18,6 +18,8 @@ var Twit = require('twit');
  * }
  */
 var TwitStream = function(conf, cache, logger) {
+  "use strict";
+
   this.conf = conf;
   this.cache = cache;
   this.cache = logger;
@@ -45,6 +47,8 @@ util.inherits(TwitStream, eventEmitter);
  * ready event have been fired.
  */
 TwitStream.prototype.getData = function getData() {
+  "use strict";
+
   var self = this;
   var stream = this.twit.stream('statuses/filter', { "track": this.conf.filter })
 
@@ -61,21 +65,24 @@ TwitStream.prototype.getData = function getData() {
     // Emit event.
     self.emit('ready', self.tweets);
   });
-}
+};
 
 TwitStream.prototype.getCache = function getCache() {
+  "use strict";
 
-}
+};
 
 TwitStream.prototype.setCache = function setCache() {
+  "use strict";
 
-}
-
+};
 
 /**
  * Load template based
  */
 TwitStream.prototype.loadTemplate = function loadTemplate() {
+  "use strict";
+
   var self = this;
   var fs = require('fs')
   fs.readFile(__dirname + '/' + self.conf.view, 'utf8', function (err, data) {
@@ -88,12 +95,14 @@ TwitStream.prototype.loadTemplate = function loadTemplate() {
       'view': data
     });
   });
-}
+};
 
 /**
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
+  "use strict";
+
   // Load config file.
   var config = require(__dirname + '/config.json');
 
@@ -136,4 +145,4 @@ module.exports = function (options, imports, register) {
    * Register the plugin with architect.
    */
   register(null, null);
-}
+};

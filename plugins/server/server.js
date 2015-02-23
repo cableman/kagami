@@ -3,6 +3,8 @@
  * Provide core http services by using express.
  */
 module.exports = function (options, imports, register) {
+  "use strict";
+
   // Get connected to the logger
   var logger = imports.logger;
 

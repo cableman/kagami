@@ -12,11 +12,11 @@ var SunCalc = require('suncalc');
 var weatherIcons = {
   "113": {
     "day": 'wi-day-sunny',
-    "night": 'wi-night-clear',
+    "night": 'wi-night-clear'
   },
   "116": {
     "day": 'wi-day-cloudy',
-    "night": 'wi-night-cloudy',
+    "night": 'wi-night-cloudy'
   },
   "119": {
     "day": "wi-cloudy",
@@ -202,7 +202,7 @@ var weatherIcons = {
     "day": "wi-day-snow",
     "night": "wi-night-alt-snow"
   }
-}
+};
 
 // Translate wwo wind directions into css icons.
 var windIcons = {
@@ -222,7 +222,7 @@ var windIcons = {
   'WNW': 'wi-wind-west',
   'NW': 'wi-wind-north-west',
   'NNW': 'wi-wind-north-west'
-}
+};
 
 /**
  * Define the WorldWeatherOnline object.
@@ -248,12 +248,14 @@ var windIcons = {
  * }
  */
 var WorldWeatherOnline = function (conf, cache, logger) {
+  "use strict";
+
   // Set basic configuration.
   this.conf = conf;
   this.cache = cache;
   this.logger = logger;
 
-  // Variables to hold fetached weather data.
+  // Variables to hold fetched weather data.
   this.xml = undefined;
   this.data = undefined;
 
@@ -266,7 +268,7 @@ var WorldWeatherOnline = function (conf, cache, logger) {
 
   // Set cache key.
   this.cacheKey = 'WWO:' + this.id;
-}
+};
 
 // Extend the object with event emitter.
 util.inherits(WorldWeatherOnline, eventEmitter);
@@ -275,8 +277,10 @@ util.inherits(WorldWeatherOnline, eventEmitter);
  * A very fast way to clone data.
  */
 WorldWeatherOnline.prototype.clone = function clone(a) {
+  "use strict";
+
   return JSON.parse(JSON.stringify(a));
-}
+};
 
 /**
  * The main app will call the init function to start up the
@@ -286,6 +290,8 @@ WorldWeatherOnline.prototype.clone = function clone(a) {
  * updated and an ready event emmitted.
  */
 WorldWeatherOnline.prototype.init = function init() {
+  "use strict";
+
   var self = this;
 
   // Set the timer with a +5 sek to ensure that redis have
@@ -294,13 +300,15 @@ WorldWeatherOnline.prototype.init = function init() {
     self._refresh();
   }, (self.conf.refresh * 60 * 1000) + 5000);
   self._refresh();
-}
+};
 
 /**
  * The main app will call this function to get data after the
  * ready event have been fired.
  */
 WorldWeatherOnline.prototype.getData = function getData() {
+  "use strict";
+
   var self = this;
 
   // Load moment library.
@@ -344,7 +352,7 @@ WorldWeatherOnline.prototype.getData = function getData() {
   }
 
   return content;
-}
+};
 
 /**
  * If cache have expire an new version is fected else cached
@@ -353,7 +361,10 @@ WorldWeatherOnline.prototype.getData = function getData() {
  * @privte
  */
 WorldWeatherOnline.prototype._refresh = function _refresh() {
+  "use strict";
+
   var self = this;
+
   // Try to load weather information from cache.
   self.once('getCache', function(res) {
     if (res.code === 204) {
@@ -374,13 +385,15 @@ WorldWeatherOnline.prototype._refresh = function _refresh() {
     }
   });
   self.getCache();
-}
+};
 
 /**
  * Fetches the weather information form the url given in the
  * object creation.
  */
 WorldWeatherOnline.prototype.fetch = function fetch() {
+  "use strict";
+
   var self = this;
   var request = require('request');
   request(self.url, function (error, response, body) {
@@ -435,7 +448,7 @@ WorldWeatherOnline.prototype.fetch = function fetch() {
       self.logger.error('WWO: Unable to fetch weather information.');
     }
   });
-}
+};
 
 /**
  * Get weather date from the cache.
@@ -444,6 +457,8 @@ WorldWeatherOnline.prototype.fetch = function fetch() {
  *   If found code "200" else code "204" no content.
  */
 WorldWeatherOnline.prototype.getCache = function getCache() {
+  "use strict";
+
   var self = this;
   self.cache.get(self.cacheKey, function(err, res) {
     if (!err) {
@@ -462,12 +477,14 @@ WorldWeatherOnline.prototype.getCache = function getCache() {
       self.logger.error('WWO: Cache encounted an error in get.');
     }
   });
-}
+};
 
 /**
  * Store the weather data in the redis cache.
  */
 WorldWeatherOnline.prototype.setCache = function setCache() {
+  "use strict";
+
   var self = this;
   var refresh = Number(self.conf.refresh);
   if (refresh !== undefined) {
@@ -490,12 +507,14 @@ WorldWeatherOnline.prototype.setCache = function setCache() {
       }
     });
   }
-}
+};
 
 /**
  * Load template based
  */
 WorldWeatherOnline.prototype.loadTemplate = function loadTemplate() {
+  "use strict";
+
   var self = this;
   var fs = require('fs')
   fs.readFile(__dirname + '/' + self.conf.view, 'utf8', function (err, data) {
@@ -509,12 +528,14 @@ WorldWeatherOnline.prototype.loadTemplate = function loadTemplate() {
       'view': data
     });
   });
-}
+};
 
 /**
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
+  "use strict";
+
   // Load config file.
   var config = require(__dirname + '/config.json');
 
@@ -555,4 +576,4 @@ module.exports = function (options, imports, register) {
    * Register the plugin with architect.
    */
   register(null, null);
-}
+};

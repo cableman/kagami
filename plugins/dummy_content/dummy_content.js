@@ -7,6 +7,8 @@
  * Register the plugin with architect.
  */
 module.exports = function (options, imports, register) {
+  "use strict";
+
   // Connect to the event bus.
   var kagami = imports.kagami;
 
@@ -23,4 +25,4 @@ module.exports = function (options, imports, register) {
    * Register the plugin with architect.
    */
   register(null, null);
-}
+};
