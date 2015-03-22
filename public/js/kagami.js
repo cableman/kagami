@@ -14,21 +14,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
 
   var socket;
   var self = this;
-
-  /**
-   * Get GET-paramter @name from the url.
-   *
-   * @param string name
-   *
-   * @returns {string}
-   */
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-
+  
   /**
    * Connect to the web-socket.
    *
@@ -37,7 +23,10 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
    */
   function getSocket(deferred) {
     // Get connected to the server.
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('http://localhost:3000', {
+      'force new connection': true,
+      'max reconnection attempts': Infinity
+    });
 
     // Handle error events.
     socket.on('error', function (reason) {
