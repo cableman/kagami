@@ -14,7 +14,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
 
   var socket;
   var self = this;
-  
+
   /**
    * Connect to the web-socket.
    *
@@ -66,7 +66,12 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
   };
 
   /**
-   * Set public functions.
+   * Handled events from the socket connection.
+   *
+   * @param eventName
+   *   Name of the event.
+   * @param callback
+   *   The callback to call when the event is fired.
    */
   this.on = function(eventName, callback) {
     socket.on(eventName, function() {
@@ -77,6 +82,16 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
     });
   };
 
+  /**
+   * Emit event into the socket connection.
+   *
+   * @param eventName
+   *   The event to emit.
+   * @param data
+   *   The data to send with the event.
+   * @param callback
+   *   The callback to call when the event have been sent.
+   */
   this.emit = function(eventName, data, callback) {
     socket.emit(eventName, data, function() {
       var args = arguments;
@@ -124,9 +139,13 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
       id: '@'
     },
     link: function(scope, element, attrs) {
+      // Connect to the socket.
       socket.connect().then(function(result) {
+        // Send region ready event into the socket.
         socket.emit('ready', { "region_id": scope.id });
 
+        // Listen to region-view event and append the view (template) into the
+        // region..
         socket.on('region-view-' + scope.id, function(data) {
           // Compile the HTML view/template.
           var el = angular.element('<span/>');

@@ -1,9 +1,9 @@
 /**
  * @file
- * Moon phase plugin for kagami.
+ * Image plugin for kagami that uses 500px.com.
  */
 
-// Get required contrib modules.
+// Get required contribute modules.
 var util = require('util');
 var eventEmitter = require('events').EventEmitter;
 
@@ -16,11 +16,11 @@ var eventEmitter = require('events').EventEmitter;
  *   Ref. to the logger object.
  *
  * {
- *   "region_id": 6,
- *   "view": "views/moon.html",
- *   "refresh": 1440,
- *   "latitude": 57.00000,
- *   "longitude": 9.00000
+ *   "region_id": 4,
+ *   "view": "views/image.html",
+ *   "key": "XXXXXX",
+ *   "refresh": 1,
+ *   "images": 15
  * }
  */
 var Image = function(conf, logger) {
@@ -123,7 +123,7 @@ Image.prototype.loadTemplate = function loadTemplate() {
   var fs = require('fs');
   fs.readFile(__dirname + '/' + self.conf.view, 'utf8', function (err, data) {
     if (err) {
-      self.logger.error('Moon: Error reading template file.');
+      self.logger.error('Image: Error reading template file.');
     }
 
     self.emit('template', {
@@ -160,7 +160,7 @@ module.exports = function (options, imports, register) {
     // Return test data in response to view request.
     kagami.emit('response-view', data);
 
-    // Start the moon plugin as template is sent.
+    // Start the image plugin as template is sent.
     image.init();
   });
 
