@@ -25,7 +25,12 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
     // Get connected to the server.
     socket = io.connect('http://localhost:3000', {
       'force new connection': true,
-      'max reconnection attempts': Infinity
+      'max reconnection attempts': Infinity,
+      'forceNew': true,
+      'reconnection': true,
+      'reconnectionDelay': 1000,
+      'reconnectionDelayMax' : 5000,
+      'reconnectionAttempts': Infinity
     });
 
     // Handle error events.
