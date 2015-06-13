@@ -9,7 +9,7 @@ var kagamiApp = angular.module('kagamiApp', []);
 /**
  * Service to handled socket.io communication with the server.
  */
-kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
+kagamiApp.service('socket', ['$rootScope', '$q', function ($rootScope, $q) {
   "use strict";
 
   var socket;
@@ -38,7 +38,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
       deferred.reject(reason);
     });
 
-    socket.on('connect', function(data) {
+    socket.on('connect', function (data) {
       self.connected = true;
       deferred.resolve('Connected to the server.');
     });
@@ -55,7 +55,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
   /**
    * Create the connection to the server with promise.
    */
-  this.connect = function() {
+  this.connect = function connect() {
     var deferred = $q.defer();
 
     // Try to connect to the server if not already connected.
@@ -78,7 +78,7 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
    * @param callback
    *   The callback to call when the event is fired.
    */
-  this.on = function(eventName, callback) {
+  this.on = function on(eventName, callback) {
     socket.on(eventName, function() {
       var args = arguments;
       $rootScope.$apply(function() {
@@ -97,10 +97,10 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
    * @param callback
    *   The callback to call when the event have been sent.
    */
-  this.emit = function(eventName, data, callback) {
-    socket.emit(eventName, data, function() {
+  this.emit = function emit(eventName, data, callback) {
+    socket.emit(eventName, data, function () {
       var args = arguments;
-      $rootScope.$apply(function() {
+      $rootScope.$apply(function () {
         if(callback) {
           callback.apply(socket, args);
         }
@@ -112,17 +112,17 @@ kagamiApp.service('socket', ['$rootScope', '$q', function($rootScope, $q) {
 /**
  * Controller used by the Kagami logo.
  */
-kagamiApp.controller('kagamiController', function($scope, socket) {
+kagamiApp.controller('kagamiController', function ($scope, socket) {
   "use strict";
 
   // Default message.
   $scope.message = 'Connecting to server...';
 
   // Get socket connection.
-  socket.connect().then(function(message) {
+  socket.connect().then(function (message) {
     // Display message from promise.
     $scope.message = message;
-    socket.on('ready', function(data) {
+    socket.on('ready', function (data) {
       // Display message from server.
       $scope.message = data.message;
     });
@@ -135,7 +135,7 @@ kagamiApp.controller('kagamiController', function($scope, socket) {
 /**
  * Directive to get content for a given region.
  */
-kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) {
+kagamiApp.directive('region', ['socket', '$compile', function (socket, $compile) {
   "use strict";
 
   return {
@@ -143,15 +143,15 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
     scope: {
       id: '@'
     },
-    link: function(scope, element, attrs) {
+    link: function (scope, element, attrs) {
       // Connect to the socket.
-      socket.connect().then(function(result) {
+      socket.connect().then(function (result) {
         // Send region ready event into the socket.
         socket.emit('ready', { "region_id": scope.id });
 
         // Listen to region-view event and append the view (template) into the
         // region..
-        socket.on('region-view-' + scope.id, function(data) {
+        socket.on('region-view-' + scope.id, function (data) {
           // Compile the HTML view/template.
           var el = angular.element('<span/>');
           el.append(data.view);
@@ -159,7 +159,7 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
           element.append(el);
 
           // Listen for data.
-          socket.on('region-content-' + scope.id, function(data) {
+          socket.on('region-content-' + scope.id, function (data) {
             scope.data = data.view;
           });
         });
@@ -171,7 +171,7 @@ kagamiApp.directive('region', ['socket', '$compile', function(socket, $compile) 
 /**
  * Time ago directive that keeps updating the time ago.
  */
-kagamiApp.directive('ago', ['$timeout', function($timeout) {
+kagamiApp.directive('ago', ['$timeout', function ($timeout) {
   "use strict";
 
   return {
@@ -180,7 +180,7 @@ kagamiApp.directive('ago', ['$timeout', function($timeout) {
       time: '@',
       interval: '@'
     },
-    link: function(scope, element, attrs) {
+    link: function (scope, element, attrs) {
       var intervalLength = Number(scope.interval) * 1000;
       var timeoutId;
 
@@ -189,13 +189,13 @@ kagamiApp.directive('ago', ['$timeout', function($timeout) {
       }
 
       function updateLater() {
-        timeoutId = $timeout(function() {
+        timeoutId = $timeout (function () {
           updateTime();
           updateLater();
         }, intervalLength);
       }
 
-      element.bind('$destroy', function() {
+      element.bind('$destroy', function () {
         $timeout.cancel(timeoutId);
       });
 
