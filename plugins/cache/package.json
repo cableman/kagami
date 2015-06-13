@@ -1,11 +1,11 @@
 {
-  "name": "Cache (redis)",
+  "name": "CacheRedis",
   "description": "Provides cache via redis key/value store",
   "version": "0.0.1",
   "main": "cache.js",
   "private": true,
   "dependencies": {
-    "redis" : "0.10.x"
+    "redis": "0.12.x"
   },
   "plugin": {
     "provides": [

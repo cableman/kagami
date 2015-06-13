@@ -1,13 +1,13 @@
 {
-  "name": "World weather online",
+  "name": "WorldWeatherOnline",
   "description": "Fetches weather information for world weather online services",
   "version": "0.0.1",
   "main": "wwo.js",
   "private": true,
   "dependencies": {
-    "request": "2.35.0",
-    "moment": "2.6.0",
-    "suncalc": "1.5.2"
+    "request": "2.57.0",
+    "moment": "2.10.3",
+    "suncalc": "1.6.0"
   },
   "plugin": {
     "consumes": [
