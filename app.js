@@ -7,7 +7,7 @@ var architect = require("architect");
 var config = [
   {
     "packagePath": "./plugins/logger",
-    "filename": "debug.log",
+    "filename": path.join(__dirname, 'debug.log'),
     "debug": true
   },
   {
