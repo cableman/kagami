@@ -5,8 +5,8 @@
   "main": "twitter.js",
   "private": true,
   "dependencies": {
-    "twit": "1.1.*",
-    "moment": "2.10.3"
+    "moment": "^2.22.2",
+    "twit": "2.2.*"
   },
   "plugin": {
     "consumes": [

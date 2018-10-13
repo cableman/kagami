@@ -5,9 +5,11 @@
   "main": "logger.js",
   "private": true,
   "dependencies": {
-    "log" : "1.4.x"
+    "log": "1.4.x"
   },
   "plugin": {
-    "provides": [ "logger" ]
+    "provides": [
+      "logger"
+    ]
   }
 }

@@ -5,6 +5,8 @@
   "main": "dummy_content.js",
   "private": true,
   "plugin": {
-    "consumes": [ "kagami" ]
+    "consumes": [
+      "kagami"
+    ]
   }
 }

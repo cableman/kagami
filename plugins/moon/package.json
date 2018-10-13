@@ -5,8 +5,8 @@
   "main": "moon.js",
   "private": true,
   "dependencies": {
-    "moment": "2.10.3",
-    "suncalc": "1.6.0"
+    "moment": "^2.22.2",
+    "suncalc": "1.7.0"
   },
   "plugin": {
     "consumes": [
